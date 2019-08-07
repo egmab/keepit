@@ -1,8 +1,9 @@
-import { combineReducers } from 'redux'
-import ItemsReducer from './ItemsReducer'
+import { combineReducers } from 'redux';
+import UserReducer from './UserReducer';
+
 
 const KeepItApp = combineReducers({
-  ItemsReducer,
+  UserReducer,
 })
 
 export default KeepItApp;

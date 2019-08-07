@@ -1,20 +1,32 @@
 const initialState = {
   items: []
 };
-const rootReducer = (state = initialState, action) => {
+
+const ItemsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case 'FETCH_ITEM_PENDING':
       return {
         ...state,
-        items: state.items.push(action.payload),
+        pending : true,
       };
-      case 'REMOVE_ITEM':
+      case 'FETCH_ITEM_SUCCESS':
       return {
         ...state,
-        items: state.items.splice(action.payload, 1)
+        pending: false,
+        items: action.payload,
+        // items: state.items.push(action.payload),
       };
+      case 'FETCH_ITEM_ERROR':
+      return {
+        ...state,
+        pending: false,
+        error: action.payload,
+        // items: state.items.splice(action.payload, 1)
+
+      };
+
     default:
       return state;
   }
 };
-export default rootReducer;
+export default ItemsReducer;

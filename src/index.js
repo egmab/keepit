@@ -3,12 +3,17 @@ import './index.css';
 import App from './App';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import KeepItApp from './reducers';
 import * as serviceWorker from './serviceWorker';
+import thunk from 'redux-thunk';
+import firebase from 'firebase/app';
+import firebaseConfig from './configs/firebaseConfig';
 
+firebase.initializeApp(firebaseConfig);
 
-const store = createStore(KeepItApp)
+const store = createStore(KeepItApp, applyMiddleware(thunk))
+
 
 render(
   <Provider store={store}>
